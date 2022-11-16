@@ -1,0 +1,67 @@
+{% extends 'Aplicacion/main.html' %}
+
+{% block content %}
+
+{% include 'Aplicacion/status.html' %}
+
+
+        <br>
+
+        <div class="row">
+            <div class="col-md-5">
+                <h5>PACIENTES:</h5>
+                <hr>
+                <div class="card card-body">
+                    <a class="btn btn-primary btn-sm btn-block" href="{% url 'pacienten' %}">Pacientes</a>
+                    <table class="table table-sm">
+                        <tr>
+                            <th></th>
+                            <th>Paciente</th>
+                            <th>Celular</th>
+                        </tr>
+
+                        {% for paciente in pacientes %}
+                            <tr>
+                                <td><a class="btn btn-sm btn-info" href="{% url 'paciente' paciente.id %}">Ver</a></td>
+                                <td>{{paciente.nombre}}</td>
+                                <td>{{paciente.celular}}</td>
+                            </tr>
+                        {% endfor %}
+
+                    </table>
+                </div>
+            </div>
+
+        <div class="col-md-7">
+            <h5>CITAS MÉDICAS:</h5>
+            <hr>
+            <div class="card card-body">
+                <a class="btn btn-primary btn-sm btn-block" href="{% url 'crear_cita' %}">Crear Cita</a>
+                <table class="table table-sm">
+                    <tr>
+                        <th>Especialidad</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+
+                    {% for cita in citas %}
+                        <tr>
+                            <td>{{cita.especialidad}}</td>
+                            <td>{{cita.fecha_creada}}</td>
+                            <td>{{cita.estado}}</td>
+                            <td><a class="btn btn-sm btn-info" href="{% url 'actualizar_cita' cita.id %}">Editar</a></td>
+                            <td><a class="btn btn-sm btn-danger" href="{% url 'eliminar_cita' cita.id %}">Eliminar</a></td>
+                        </tr>
+                    {% endfor %}
+
+                </table>
+
+            </div>
+
+        </div>
+        </div>
+
+{% endblock %}
+

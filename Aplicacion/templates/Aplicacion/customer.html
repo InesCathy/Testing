@@ -1,0 +1,85 @@
+{% extends 'Aplicacion/main.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>PACIENTE</h5>
+			<font size="6"><p style="color: blue;"><strong>{{paciente.nombre}} </strong></p></font>
+			<hr>
+
+
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Informacion de Contacto</h5>
+			<hr>
+			
+			<p style="color: #0080FF;">Email: {{paciente.email}}</p>
+			<p>Celular: {{paciente.celular}}</p>
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body text-primary">
+			<h5>Total Citas</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{cita_count}}</h1>
+		</div>
+	</div>
+</div>
+
+
+<br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="get">
+				{{myfilter.form}}
+
+		    <button class="btn btn-primary" type="submit">Buscar</button>
+		  </form>
+		</div>
+	</div>
+	
+</div>
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Especialidad</th>
+					<th>Medico</th>
+					<th>Fecha</th>
+					<th>Estado</th>
+					<th>Editar</th>
+					<th>Eliminar</th>
+				</tr>
+
+				{% for cita in citas %}
+
+				<tr>
+					<td>{{cita.especialidad}}</td>
+					<td>{{cita.medico}}</td>
+					<td>{{cita.fecha_creada}}</td>
+					<td>{{cita.estado}}</td>
+					<td><a class="btn btn-sm btn-info" href="{% url 'actualizar_cita' cita.id %}">Editar</a></td>
+					<td><a class="btn btn-sm btn-danger" href="{% url 'eliminar_cita' cita.id %}">Eliminar</a></td>
+
+				</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

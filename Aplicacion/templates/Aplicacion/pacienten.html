@@ -1,0 +1,53 @@
+{% extends 'Aplicacion/main.html' %}
+
+{% block content %}
+
+        <br>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                <h3>Gestión de Pacientes</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/registrarPaciente/" method="POST">{% csrf_token %}
+                            <div class="form-group">
+                                <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="txtCelular" name="txtCelular" class="form-control" placeholder="Celular" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="txtEmail" name="txtEmail" class="form-control" placeholder="example@email.com"  required>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-info btn-block text-white">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+                <h5 style="color: rgb(95, 162, 196)">Pacientes Registrados:</h5>
+                <div class="table responsive py-3">
+                    <table class="table table-sm" >
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Celular</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in pacienten %}
+                            <tr>
+                                <td>{{ i.nombre }}</td>
+                                <td>{{ i.celular }}</td>
+                                <td>{{ i.email }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+{% endblock %}

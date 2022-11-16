@@ -1,0 +1,23 @@
+{% extends 'Aplicacion/main.html' %}
+{% load static %}
+{% block content %}
+
+<br>
+
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <h3>Gestión de Citas</h3>
+        <div class="card">
+            <div class="card-body">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{form}}
+                    <input type="submit" name="Submit" class="btn btn-sm btn-info">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
